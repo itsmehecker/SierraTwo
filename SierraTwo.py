@@ -10,7 +10,12 @@ import threading
 
 import slack_sdk
 
-import config
+member_id = ["id_1", "id_2", "id_3"]
+
+bot_user_oauth_token = "xoxb-"
+
+channel_prefix = "sierra-hotel-"
+
 
 TEXT_SIZE_MAX = 3992
 CHUNKED_TEXT_SIZE_MAX = 3 * TEXT_SIZE_MAX

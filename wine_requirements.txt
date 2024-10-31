@@ -1,5 +1,0 @@
-pyarmor
-pyinstaller
-pywin32
-slacksdk
-win32gui
