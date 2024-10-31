@@ -21,7 +21,7 @@ $ python3 SierraTwo.py
 
 ### Building
 To build an executable:
-
+for linux:
 ```
 $ sudo apt install python3-pip winbind wine winetricks
 $ wget https://www.python.org/ftp/python/3.8.2/python-3.8.2-amd64.exe
@@ -30,7 +30,10 @@ $ sudo pip3 install -r requirements.txt
 $ wine pip install -r wine_requirements.txt
 $ python3 builder.py -o <TARGET SYSTEM>
 ```
-
+for windows:
+> pip3 install -r wine_requirements.txt
+> pyarmor-7 pack -e --onefile  -n msdt SierraTwo.py
+This will create a dist directory in which there will be the final exe
 #### **BE SURE TO ADD PYTHON TO PATH WHEN INSTALLING WITH WINE**
 
 The following commands will setup Wine with 64 bit Python 3.8.2 on your system. `<TARGET SYSTEM>` can be either 
